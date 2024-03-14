@@ -1,0 +1,88 @@
+body {
+	padding: 0;
+	margin: 0;
+}
+
+.screen {
+	width: 100vw;
+	height: 100vh;
+	background-color: #eee;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	flex-wrap: wrap;
+	transition: .2s;
+}
+
+.logo {
+	max-width: 60%;
+}
+
+.controls {
+	width: 100vw;
+	padding-top: 20px;
+	position: absolute;
+	top: 0;
+	display: flex;
+	justify-content: center;
+}
+
+.dark-mode {
+	display: none;
+}
+
+.dark-mode-control {
+	position: relative;
+	color: white;
+	content: '';
+	width: 200px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 5px solid #eee;
+	border-radius: 50px;
+	color: #b43528;
+	background-color: #c44538;
+	box-shadow:	2px 2px 5px #5f5f5f,
+				-2px -2px 5px #ffffff,
+				5px 5px 2px #a23024 inset,
+				-5px -5px 2px #c1392b inset;
+	transition: .3s;
+}
+
+.dark-mode-control::after {
+	content: '';
+	z-index: 1;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	border-radius: 50%;
+	display: inline;
+	transition: .3s;
+	background:
+		radial-gradient(35% 25% at 50% 25%, rgb(136,136,153) 20%, rgba(10,136,153,0)),
+		radial-gradient(1em 0.75em at 32% 75%, rgb(102,102,102), rgba(102,102,102,0)),
+		radial-gradient(1em 0.75em at 65% 78%, rgb(102,102,102), rgba(102,102,102,0)),
+		radial-gradient(100% 100% at center, rgb(68,68,68) 49.5%, rgba(68,68,68,0) 50%);
+}
+
+.dark-mode:checked ~ .screen {
+	background-color: #111;
+}
+
+.dark-mode:checked ~ .controls .dark-mode-control {
+	border: 5px solid #111;
+	color: #00906A;
+	background-color: #10a07A;
+	box-shadow: 2px 2px 5px #070707,
+				-2px -2px 5px #1b1b1b,
+				5px 5px 2px #0e906e inset,
+				-5px -5px 2px #11ab83 inset;
+}
+
+.dark-mode:checked ~ .controls .dark-mode-control::after {
+	left: calc(100% - 35px);
+}

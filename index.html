@@ -1,62 +1,22 @@
 <!DOCTYPE html>
-	<html lang="en">
+	<html lang="pt-BR">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Duraness</title>
-		<style>
-			body {
-				padding: 0;
-				margin: 0;
-			}
-
-			.dark-mode-control {
-				position: absolute;
-			}
-
-			.dark-mode-control:after {
-				content: "darkmode";
-				margin-left: 20px;
-			}
-
-			.dark-mode-control:checked:after {
-				color: white;
-			}
-
-			.screen {
-				width: 100vw;
-				height: 100vh;
-				background-color: white;
-				display: flex;
-				justify-content: center;
-				align-content: center;
-				flex-wrap: wrap;
-				transition: .2s;
-			}
-
-			.logo {
-				max-width: 60%;
-			}
-
-			.dark-mode-control:checked ~ .screen {
-				background-color: #111;
-			}
-		</style>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<input class="dark-mode-control" type="checkbox" />
+		<input id="dark-mode-state" class="dark-mode" type="checkbox" />
+
 		<section class="screen">
 			<img class="logo" src="img/logomarca.png" />
 		</section>
-		<script>
-			const darkModeControl = document.querySelector(`input[class="dark-mode-control"]`);
-			const logo = document.querySelector(`img.logo`);
 
-			darkModeControl.addEventListener(`click`, e => {
-				logo.src = e.target.checked ? `img/logomarca-dark.png` : `img/logomarca.png`;
-			});
-			
-			darkModeControl.click();
-		</script>
+		<div class="controls">
+			<label for="dark-mode-state" class="dark-mode-control">Dark Mode</label>
+		</div>
+
+		<script src="script.js"></script>
 	</body>
 </html>
