@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap');
+
 body {
 	padding: 0;
 	margin: 0;
+	font-family: 'Inconsolata', monospace;
 }
 
 .screen {
@@ -40,9 +43,12 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	font-weight: bolder;
 	border: 5px solid #eee;
 	border-radius: 50px;
+	font-size: 25px;
 	color: #b43528;
+	text-shadow: 1px 1px 0px #c1392b, -1px -1px 0px #a23024;
 	background-color: #c44538;
 	box-shadow:	2px 2px 5px #5f5f5f,
 				-2px -2px 5px #ffffff,
@@ -76,6 +82,7 @@ body {
 .dark-mode:checked ~ .controls .dark-mode-control {
 	border: 5px solid #111;
 	color: #00906A;
+	text-shadow: 1px 1px 0px #009a71, -1px -1px 0px #00825f;
 	background-color: #10a07A;
 	box-shadow: 2px 2px 5px #070707,
 				-2px -2px 5px #1b1b1b,
