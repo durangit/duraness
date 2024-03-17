@@ -1,16 +1,12 @@
-import CheckboxHandler from "../handlers/checkbox.js";
-import ButtonHandler from "../handlers/button.js";
-import ImageHandler from "../handlers/image.js";
-
 export default class DarkModeController {
 	#control;
 	#button;
 	#logo;
 
-	constructor(_elementList) {
-		this.#control = new CheckboxHandler(_elementList.get(`dark-mode-control`));
-		this.#button = new ButtonHandler(_elementList.get(`dark-mode-button`));
-		this.#logo = new ImageHandler(_elementList.get(`logo-img`));
+	constructor(_handlerMap) {
+		this.#control = _handlerMap.get(`dark-mode-control`);
+		this.#button = _handlerMap.get(`dark-mode-button`);
+		this.#logo = _handlerMap.get(`logo-img`);
 
 		this.#control.subscribe(`change`, () => this.#checkboxChange());
 		this.#button.subscribe(`click`, () => this.#buttonClick());

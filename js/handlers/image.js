@@ -1,12 +1,17 @@
-import Handler from "../core/handler.js";
+export default class ImageHandler {
+	#handler;
 
-export default class ImageHandler extends Handler {
-	constructor(_DOMElement) {
-		super(_DOMElement, [`change`]);
+	constructor(_handler) {
+		this.#handler = _handler;
+		this.#handler.createEvent(`change`);
+	}
+
+	subscribe(_eventName, _function) {
+		this.#handler.subscribe(_eventName, _function);
 	}
 
 	setPath(_path) {
-		this.getElement().src = _path;
-		this.notify(`change`);
+		this.#handler.getElement().src = _path;
+		this.#handler.notify(`change`);
 	}
 }

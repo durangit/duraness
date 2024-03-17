@@ -2,10 +2,10 @@ export default class Handler {
 	#element;
 	#events = [];
 
-	constructor(_DOMElement, _eventsName = []) {
-		this.#element = _DOMElement;
+	constructor(_selector, _eventNames = []) {
+		this.#element = document.querySelector(`${_selector}`);
 
-		_eventsName.forEach(eventName => {
+		_eventNames.forEach(eventName => {
 			this.#events[eventName] = [];
 		});
 	}
@@ -14,21 +14,29 @@ export default class Handler {
 		return this.#element;
 	}
 
-	subscribe(_eventName, _function) {
+	createEvent(_eventName) {
 		if (this.#events[_eventName]) {
-			this.#events[_eventName].push(_function);
+			console.error(`Event already exist`);
 		} else {
+			this.#events[_eventName] = [];
+		}
+	}
+
+	subscribe(_eventName, _function) {
+		if (!this.#events[_eventName]) {
 			console.error(`Event doesn't exist`);
+		} else {
+			this.#events[_eventName].push(_function);
 		}
 	}
 
 	notify(_eventName) {
-		if (this.#events[_eventName]) {
+		if (!this.#events[_eventName]) {
+			console.error(`Event doesn't exist`);
+		} else {
 			this.#events[_eventName].forEach(func => {
 				func();
 			});
-		} else {
-			console.error(`Event doesn't exist`);
 		}
 	}
 }

@@ -1,13 +1,18 @@
-import Handler from "../core/handler.js";
+export default class ButtonHandler {
+	#handler;
 
-export default class ButtonHandler extends Handler {
-	constructor(_DOMElement) {
-		super(_DOMElement, [`click`]);
+	constructor(_handler) {
+		this.#handler = _handler;
+		this.#handler.createEvent(`click`);
 
-		this.getElement().addEventListener(`click`, () => this.click());
+		this.#handler.getElement().addEventListener(`click`, () => this.click());
+	}
+
+	subscribe(_eventName, _function) {
+		this.#handler.subscribe(_eventName, _function);
 	}
 
 	click() {
-		this.notify(`click`);
+		this.#handler.notify(`click`);
 	}
 }

@@ -1,25 +1,30 @@
-import Handler from "../core/handler.js";
+export default class CheckboxHandler {
+	#handler;
 
-export default class CheckboxHandler extends Handler {
-	constructor(_DOMElement) {
-		super(_DOMElement, [`change`]);
+	constructor(_handler) {
+		this.#handler = _handler;
+		this.#handler.createEvent(`change`);
+	}
+
+	subscribe(_eventName, _function) {
+		this.#handler.subscribe(_eventName, _function);
 	}
 
 	check() {
-		this.getElement().setAttribute('checked', null);
-		this.getElement().checked = true;
-		this.notify(`change`);
+		this.#handler.getElement().setAttribute('checked', null);
+		this.#handler.getElement().checked = true;
+		this.#handler.notify(`change`);
 		
 	}
 
 	uncheck() {
-		this.getElement().removeAttribute('checked');
-		this.getElement().checked = false;
-		this.notify(`change`);
+		this.#handler.getElement().removeAttribute('checked');
+		this.#handler.getElement().checked = false;
+		this.#handler.notify(`change`);
 	}
 
 	isChecked() {
-		return this.getElement().hasAttribute(`checked`);
+		return this.#handler.getElement().hasAttribute(`checked`);
 	}
 
 	toggle() {
