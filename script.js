@@ -23,88 +23,127 @@ class ElementsList {
 	}
 }
 
-class Event {
-	#name;
-	#function;
-
-	constructor(_name, _function = () => {}) {
-		this.#name = _name;
-		this.#function = _function;
-	}
-
-	getName() {
-		return this.#name;
-	}
-
-	fireEvent() {
-		this.#function();
-	}
-}
-
 class Handler {
+	#element;
 	#events = [];
 
-	constructor(_events = []) {
-		_events.forEach(event => {
-			this.#events[event.getName()] = event;
-		})
+	constructor(_DOMElement, _eventsName = []) {
+		this.#element = _DOMElement;
+
+		_eventsName.forEach(eventName => {
+			this.#events[eventName] = [];
+		});
 	}
 
-	get(name) {
-		return this.#events[name];
+	getElement() {
+		return this.#element;
+	}
+
+	subscribe(_eventName, _function) {
+		if (this.#events[_eventName]) {
+			this.#events[_eventName].push(_function);
+		} else {
+			console.error(`Event doesn't exist`);
+		}
+	}
+
+	notify(_eventName) {
+		if (this.#events[_eventName]) {
+			this.#events[_eventName].forEach(func => {
+				func();
+			});
+		} else {
+			console.error(`Event doesn't exist`);
+		}
 	}
 }
 
-class DarkModeHandler extends Handler {
-	#enabled = false;
-	#enabler;
-	#logo;
 
-	constructor(_elementsList) {
-		super();
+class CheckboxHandler extends Handler {
+	constructor(_DOMElement) {
+		super(_DOMElement, [`change`]);
+	}
 
-		this.#enabler = _elementsList.get(`is-dark-mode`);
-		this.#logo = _elementsList.get(`logo-img`);
+	check() {
+		this.getElement().setAttribute('checked', null);
+		this.getElement().checked = true;
+		this.notify(`change`);
 		
-		this.#create();
 	}
 
-	#create() {
-		this.#enabler.addEventListener(`change`, this.onChange);
+	uncheck() {
+		this.getElement().removeAttribute('checked');
+		this.getElement().checked = false;
+		this.notify(`change`);
 	}
 
-	setEnabled(isEnabled) {
-		this.#enabled = isEnabled;
-		this.onChange();
+	isChecked() {
+		return this.getElement().hasAttribute(`checked`);
 	}
 
-	onChange() {
-		this.#enabler.checked = this.#enabled;
-		this.#logo.src = this.#enabled ? `img/logomarca-dark.png` : `img/logomarca.png`;
+	toggle() {
+		if (this.isChecked()) {
+			this.uncheck();
+		} else {
+			this.check();
+		}
+	}
+}
+
+class ImageHandler extends Handler {
+	constructor(_DOMElement) {
+		super(_DOMElement, [`change`, `click`]);
+	}
+
+	setPath(_path) {
+		this.getElement().src = _path;
+		this.notify(`change`);
 	}
 }
 
 class DarkModeController {
-	#handler;
+	#checkboxHadler;
+	#logo;
 
-	constructor(_elementsList, _isDarkMode = false) {
-		this.#handler = new DarkModeHandler(_elementsList);
+	constructor(_elementsList) {
+		this.#checkboxHadler = new CheckboxHandler(_elementsList.get(`dark-mode-enabled`));
+		this.#logo = new ImageHandler(_elementsList.get(`logo-img`));
+
+		this.#checkboxHadler.subscribe(`change`, () => this.#onChange());
+
+		_elementsList.get(`dark-mode-control`).addEventListener(`click`, () => this.#checkboxHadler.toggle());
 	}
 
-	set(isDarkMode) {
-		this.#handler.setEnabled(isDarkMode);
+	#onChange() {
+		if (this.#checkboxHadler.isChecked()) {
+			this.#logo.setPath(`img/logomarca-dark.png`);
+		} else {
+			this.#logo.setPath(`img/logomarca.png`);
+		}
 	}
 
+	enable() {
+		this.#checkboxHadler.check();
+	}
+
+	disable() {
+		this.#checkboxHadler.uncheck();
+	}
 }
 
 window.onload = function () {
 	const elementsList = new ElementsList([
 		new DOMElement(`logo-img`, `img.logo`),
-		new DOMElement(`is-dark-mode`, `input[class="dark-mode"]`)
+		new DOMElement(`dark-mode-enabled`, `input#dark-mode-enabled`),
+		new DOMElement(`dark-mode-control`, `div.dark-mode-control`)
 	]);
+	
+	const test = () => {
+		const darkMode = new DarkModeController(elementsList);
+		darkMode.enable();
+	};
 
-	const darkMode = new DarkModeController(elementsList);
-	darkMode.set(true);
-	//const darkModeControl = new DarkModeController(DarkModeHandler, elementsList);
-	//darkModeControl.setDarkMode(true);
+	setTimeout(test, 1000);
+	
+	// console.warn(`no implementation yet`);
 };

@@ -9,7 +9,7 @@ body {
 .screen {
 	width: 100vw;
 	height: 100vh;
-	background-color: #eee;
+	background-color: #ddd;
 	display: flex;
 	justify-content: center;
 	align-content: center;
@@ -22,12 +22,9 @@ body {
 }
 
 .controls {
-	width: 100vw;
-	padding-top: 20px;
 	position: absolute;
-	top: 0;
-	display: flex;
-	justify-content: center;
+	bottom: 25px;
+	right: 25px;
 }
 
 .dark-mode {
@@ -36,43 +33,27 @@ body {
 
 .dark-mode-control {
 	position: relative;
-	color: white;
 	content: '';
-	width: 200px;
+	width: 120px;
 	height: 40px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-weight: bolder;
-	border: 5px solid #eee;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	border: 5px solid #ddd;
 	border-radius: 50px;
-	font-size: 25px;
 	color: #b43528;
-	text-shadow: 1px 1px 0px #c1392b, -1px -1px 0px #a23024;
+	text-shadow:	1px 1px 0px #c1392b,
+					0px 1px 0px #c1392b,
+					1px 0px 0px #c1392b,
+					-1px -1px 0px #a23024,
+					0px -1px 0px #a23024,
+					-1px 0px 0px #a23024,
+					-1px 1px 0px #a23024;
 	background-color: #c44538;
-	box-shadow:	2px 2px 5px #5f5f5f,
-				-2px -2px 5px #ffffff,
-				5px 5px 2px #a23024 inset,
-				-5px -5px 2px #c1392b inset;
-	transition: .3s;
-}
-
-.dark-mode-control::after {
-	content: '';
-	z-index: 1;
-	width: 30px;
-	height: 30px;
-	position: absolute;
-	top: 5px;
-	left: 5px;
-	border-radius: 50%;
-	display: inline;
-	transition: .3s;
-	background:
-		radial-gradient(35% 25% at 50% 25%, rgb(136,136,153) 20%, rgba(10,136,153,0)),
-		radial-gradient(1em 0.75em at 32% 75%, rgb(102,102,102), rgba(102,102,102,0)),
-		radial-gradient(1em 0.75em at 65% 78%, rgb(102,102,102), rgba(102,102,102,0)),
-		radial-gradient(100% 100% at center, rgb(68,68,68) 49.5%, rgba(68,68,68,0) 50%);
+	box-shadow:	2px 2px 5px #bcbcbc,
+				-2px -2px 5px #fefefe;
 }
 
 .dark-mode:checked ~ .screen {
@@ -82,14 +63,16 @@ body {
 .dark-mode:checked ~ .controls .dark-mode-control {
 	border: 5px solid #111;
 	color: #00906A;
-	text-shadow: 1px 1px 0px #009a71, -1px -1px 0px #00825f;
+	text-shadow:	1px 1px 0px #009a71,
+					0px 1px 0px #009a71,
+					1px 0px 0px #009a71,
+					-1px -1px 0px #00825f,
+					0px -1px 0px #00825f,
+					-1px 0px 0px #00825f,
+					-1px 1px 0px #00825f;
 	background-color: #10a07A;
 	box-shadow: 2px 2px 5px #070707,
 				-2px -2px 5px #1b1b1b,
-				5px 5px 2px #0e906e inset,
-				-5px -5px 2px #11ab83 inset;
-}
-
-.dark-mode:checked ~ .controls .dark-mode-control::after {
-	left: calc(100% - 35px);
+				-5px -5px 2px #11ab83 inset,
+				5px 5px 2px #0e906e inset;
 }
