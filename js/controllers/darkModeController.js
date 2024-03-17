@@ -14,11 +14,7 @@ export default class DarkModeController {
 	}
 
 	#checkboxChange() {
-		if (this.#control.isChecked()) {
-			this.#logo.setPath(`img/logomarca-dark.png`);
-		} else {
-			this.#logo.setPath(`img/logomarca.png`);
-		}
+		this.#logo.setDarkMode(this.#control.isChecked());
 	}
 
 	#buttonClick() {
