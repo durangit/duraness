@@ -31,7 +31,7 @@ body {
 	display: none;
 }
 
-.dark-mode-control {
+.dark-mode-button {
 	position: relative;
 	content: '';
 	width: 120px;
@@ -60,7 +60,7 @@ body {
 	background-color: #111;
 }
 
-.dark-mode:checked ~ .controls .dark-mode-control {
+.dark-mode:checked ~ .controls .dark-mode-button {
 	border: 5px solid #111;
 	color: #00906A;
 	text-shadow:	1px 1px 0px #009a71,
