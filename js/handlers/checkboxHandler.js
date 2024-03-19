@@ -11,7 +11,7 @@ export default class CheckboxHandler {
 	}
 
 	check() {
-		this.#handler.getElement().setAttribute('checked', null);
+		this.#handler.getElement().setAttribute('checked', '');
 		this.#handler.getElement().checked = true;
 		this.#handler.notify(`change`);
 		

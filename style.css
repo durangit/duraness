@@ -1,25 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
 body {
 	padding: 0;
 	margin: 0;
 	font-family: 'Inconsolata', monospace;
+
+	--black: #111;
+	--black-grow: #1b1b1b;
+	--black-shadow: #070707;
+	--white: #ddd;
+	--white-grow: #fefefe;
+	--white-shadow: #bcbcbc;
+	--green: #00906a;
+	--green-grow: #009a71;
+	--green-shadow: #00825f;
+	--light-green: #10a07a;
+	--light-green-grow: #11ab83;
+	--light-green-shadow: #0e906e;
+	--red: #b43528;
+	--red-grow: #c1392b;
+	--red-shadow: #a23024;
+	--light-red: #c44538;
 }
 
 .screen {
-	width: 100%;
 	height: 100vh;
+}
+
+.screen svg .duran {
+	fill: var(--black);
+}
+
+.screen svg.dark .duran {
+	fill: var(--white);
 }
 
 .container {
 	padding: 10%;
-	background-color: #ddd;
-	box-sizing: border-box;
+	background-color: var(--white);
 	display: flex;
 	justify-content: center;
 	align-content: center;
 	flex-wrap: wrap;
 	transition: .2s;
+}
+
+.wrapper {
+	max-width: 1200px;
 }
 
 .logo {
@@ -37,11 +65,57 @@ b {
 }
 
 b::first-letter {
-	color: #b43528;
+	color: var(--red);
 }
 
 abbr {
-	color: #b43528;
+	color: var(--red);
+}
+
+.color-picker {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border-width: 5px;
+	border-style: solid;
+	border-color: var(--white);
+	box-shadow:	-2px -2px 5px var(--white-grow),
+				2px 2px 5px var(--white-shadow);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+	transition: .3s;
+}
+
+.dark-mode:checked ~ .controls .color-picker {
+	border-color: var(--black);
+	box-shadow:	-2px -2px 5px var(--black-grow),
+				2px 2px 5px var(--black-shadow);
+}
+
+.color-picker input {
+	width: 0;
+	height: 0;
+	padding: 0;
+	border: 0;
+}
+
+::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+
+::-moz-focus-inner {
+	padding: 0;
+}
+
+::-moz-focus-inner,
+::-moz-color-swatch {
+	border: 0;
+}
+
+::-webkit-color-swatch {
+	border: 0;
+	border-radius: 0;
 }
 
 .dark-mode {
@@ -49,48 +123,46 @@ abbr {
 }
 
 .dark-mode-button {
-	position: relative;
 	content: '';
 	width: 120px;
 	height: 40px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	letter-spacing: 2px;
+	font-family: 'Share Tech Mono', monospace;
+	letter-spacing: 1px;
 	text-transform: uppercase;
 	border: 5px solid #ddd;
 	border-radius: 50px;
-	color: #b43528;
-	text-shadow:	1px 1px 0px #c1392b,
-					0px 1px 0px #c1392b,
-					1px 0px 0px #c1392b,
-					-1px -1px 0px #a23024,
-					0px -1px 0px #a23024,
-					-1px 0px 0px #a23024,
-					-1px 1px 0px #a23024;
-	background-color: #c44538;
-	box-shadow:	2px 2px 5px #bcbcbc,
-				-2px -2px 5px #fefefe;
+	color: var(--red);
+	text-shadow:	1px 1px 0px var(--red-grow),
+					0px 1px 0px var(--red-grow),
+					1px 0px 0px var(--red-grow),
+					-1px -1px 0px var(--red-shadow),
+					0px -1px 0px var(--red-shadow),
+					-1px 0px 0px var(--red-shadow);
+	background-color: var(--light-red);
+	box-shadow:	-2px -2px 5px var(--white-grow),
+				2px 2px 5px var(--white-shadow);
 }
 
 .dark-mode:checked ~ .container {
-	background-color: #111;
-	color: #fff;
+	background-color: var(--black);
+	color: var(--white);
 }
 
 .dark-mode:checked ~ .controls .dark-mode-button {
-	border: 5px solid #111;
-	color: #00906A;
-	text-shadow:	1px 1px 0px #009a71,
-					0px 1px 0px #009a71,
-					1px 0px 0px #009a71,
-					-1px -1px 0px #00825f,
-					0px -1px 0px #00825f,
-					-1px 0px 0px #00825f,
-					-1px 1px 0px #00825f;
-	background-color: #10a07A;
-	box-shadow: 2px 2px 5px #070707,
-				-2px -2px 5px #1b1b1b,
-				-5px -5px 2px #11ab83 inset,
-				5px 5px 2px #0e906e inset;
+	border: 5px solid var(--black);
+	color: var(--green);
+	text-shadow:	1px 1px 0px var(--green-grow),
+					0px 1px 0px var(--green-grow),
+					1px 0px 0px var(--green-grow),
+					-1px -1px 0px var(--green-shadow),
+					0px -1px 0px var(--green-shadow),
+					-1px 0px 0px var(--green-shadow);
+	background-color: var(--light-green);
+	box-shadow: -2px -2px 5px var(--black-grow),
+				2px 2px 5px var(--black-shadow),
+				-5px -5px 2px var(--light-green-grow) inset,
+				5px 5px 2px var(--light-green-shadow) inset;
 }

@@ -1,10 +1,9 @@
 export default class LogoHandler {
 	#handler;
-	#originalPath = `img/logomarca.png`
-	#darkPath = `img/logomarca-dark.png`;
 
 	constructor(_handler) {
 		this.#handler = _handler;
+		this.#handler.createEvent(`change`);
 	}
 
 	subscribe(_eventName, _function) {
@@ -13,9 +12,29 @@ export default class LogoHandler {
 
 	setDarkMode(_isDarkMode) {
 		if (_isDarkMode) {
-			this.#handler.setPath(this.#darkPath);
+			this.#handler.getElement().classList.add(`dark`);
 		} else {
-			this.#handler.setPath(this.#originalPath);
+			this.#handler.getElement().classList.remove(`dark`);
 		}
-	}	
+	}
+
+	setDuran(_color) {
+		this.#handler.getElement().querySelector('g.duran').style.fill = _color;
+		this.#handler.notify(`change`);
+	}
+
+	setNess(_color) {
+		this.#handler.getElement().querySelector('g.ness').style.fill = _color;
+		this.#handler.notify(`change`);
+	}
+
+	setLeaf(_color) {
+		this.#handler.getElement().querySelector('g.leaf').style.color = _color;
+		this.#handler.notify(`change`);
+	}
+
+	setFruit(_color) {
+		this.#handler.getElement().querySelector('g.fruit').style.color = _color;
+		this.#handler.notify(`change`);
+	}
 }

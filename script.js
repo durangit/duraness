@@ -3,19 +3,26 @@ import HandlerIdentified from "./js/core/handlerIdentified.js";
 import Handler from "./js/core/handler.js";
 import CheckboxHandler from "./js/handlers/checkboxHandler.js";
 import ButtonHandler from "./js/handlers/buttonHandler.js";
-import ImageHandler from "./js/handlers/imageHandler.js";
 import LogoHandler from "./js/handlers/logoHandler.js";
+import ColorPickerHandler from "./js/handlers/colorPickerHandler.js";
 import DarkModeController from "./js/controllers/darkModeController.js";
+import ColorController from "./js/controllers/colorController.js";
 
 window.onload = function () {
 	const test = async () => {
 		const elementList = new HandlerMap([
-			new HandlerIdentified(`logo-img`, new LogoHandler(new ImageHandler(new Handler(`img.logo`)))),
+			new HandlerIdentified(`logo`, new LogoHandler(new Handler(`svg.logo`))),
+			new HandlerIdentified(`logo`, new LogoHandler(new Handler(`svg.logo`))),
 			new HandlerIdentified(`dark-mode-control`, new CheckboxHandler(new Handler(`input#dark-mode-control`))),
-			new HandlerIdentified(`dark-mode-button`, new ButtonHandler(new Handler(`div.dark-mode-button`)))
+			new HandlerIdentified(`dark-mode-button`, new ButtonHandler(new Handler(`div.dark-mode-button`))),
+			new HandlerIdentified(`color-picker-duran`, new ColorPickerHandler(new Handler(`div#color-picker-duran`))),
+			new HandlerIdentified(`color-picker-ness`, new ColorPickerHandler(new Handler(`div#color-picker-ness`))),
+			new HandlerIdentified(`color-picker-leaf`, new ColorPickerHandler(new Handler(`div#color-picker-leaf`))),
+			new HandlerIdentified(`color-picker-fruit`, new ColorPickerHandler(new Handler(`div#color-picker-fruit`))),
 		]);
 	
 		const darkMode = new DarkModeController(elementList);
+		const color = new ColorController(elementList);
 	
 		const createPromise = action => {
 			return new Promise((resolve, reject) => {
@@ -33,9 +40,12 @@ window.onload = function () {
 			});
 		};
 
-		await createPromise(() => { darkMode.enable() }); // Enable Dark Mode on Controller
-		await createPromise(() => { elementList.get(`dark-mode-button`).click() }); // Enable Dark Mode on Button
-		await createPromise(() => { elementList.get(`dark-mode-control`).toggle() }); // Enable Dark Mode on Checkbox
+		await createPromise(() => {
+			elementList.get(`color-picker-duran`).setColor(`#111111`);
+			elementList.get(`color-picker-ness`).setColor(`#b43528`);
+			elementList.get(`color-picker-leaf`).setColor(`#00906a`);
+			elementList.get(`color-picker-fruit`).setColor(`#b43528`);
+		 }); // Set Colors
 	};
 
 	setTimeout(test, 1000);
