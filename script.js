@@ -1,17 +1,47 @@
-import wcLabel from "./framework/components/atoms/a-label.js";
-import wcCode from "./framework/components/atoms/a-code.js";
-import wcButton from "./framework/components/molecules/m-button.js";
-import wcWrapper from "./framework/components/organisms/o-wrapper.js";
-import wcContainer from "./framework/components/organisms/o-container.js";
-import wcThread from "./framework/components/organisms/o-thread.js";
-import wcScreen from "./framework/components/organisms/o-screen.js";
-
 document.addEventListener("DOMContentLoaded", () => {
-	customElements.define("wc-label", wcLabel);
-	customElements.define("wc-code", wcCode);
-	customElements.define("wc-button", wcButton);
-	customElements.define("wc-wrapper", wcWrapper);
-	customElements.define("wc-container", wcContainer);
-	customElements.define("wc-thread", wcThread);
-	customElements.define("wc-screen", wcScreen);
+	const openMenuButton = document.querySelector('#fixed-buttons .button');
+	openMenuButton.addEventListener('click', () => {
+		location.href = '#menu';
+	});
+
+	const threads = document.querySelectorAll('.thread');
+	let lastTouch = 0;
+	threads.forEach(thread => {
+		thread.addEventListener('wheel', event => {
+			thread.style.scrollBehavior = 'unset';
+			thread.scrollTo({
+				top: Math.max(0, thread.scrollTop + event.deltaY)
+			});
+			thread.style.scrollBehavior = 'smooth';
+		});
+		thread.addEventListener('touchstart', event => {
+			lastTouch = event.touches[0].clientY;
+		});
+		thread.addEventListener('touchend', event => {
+			lastTouch = 0;
+		});	
+		thread.addEventListener('touchmove', event => {
+			const currentTouch = event.touches[0].clientY;
+			thread.style.scrollBehavior = 'unset';
+			thread.scrollTo({
+				top: Math.max(0, thread.scrollTop + (lastTouch - currentTouch))
+			});
+			thread.style.scrollBehavior = 'smooth';
+			lastTouch = currentTouch;
+		});
+	});
+	
+	const updateActiveLink = event => {
+		let activeHash = (Boolean(event) ? new URL(event.oldURL) : window.location).hash;
+		document.querySelectorAll("#menu a").forEach(link => {
+			if (link.getAttribute("href") === activeHash) {
+				link.parentElement.classList.add("pressed");
+			} else {
+				link.parentElement.classList.remove("pressed");
+            }
+		});
+    };
+
+    window.addEventListener("hashchange", updateActiveLink);
+    updateActiveLink(); // Executa quando a página carrega
 });
