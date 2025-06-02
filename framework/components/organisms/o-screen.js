@@ -30,7 +30,7 @@ export default class oScreen extends wComponent {
             elTrack.classList.add('track');
             elTrack.appendChild(component.getContent());
 
-            component.getDom().setAttribute('id', 'viewport');
+            component.getDOM().setAttribute('id', 'viewport');
             component.append(elTrack);
         });
     }

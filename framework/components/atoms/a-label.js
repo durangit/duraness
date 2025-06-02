@@ -35,9 +35,8 @@ export default class aLabel extends wComponent {
 		
 			elSpan.appendChild(component.getContent());
 
-			component.setClass('label');
 			size && component.setClass(size);
-
+			component.setClass('label');
 			component.append(elSpan);
 		});
 	}

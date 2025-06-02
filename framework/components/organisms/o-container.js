@@ -8,15 +8,15 @@ export default class oContainer extends wComponent {
             component.setStyle(`
                 .container {
                     padding: var(--padding);
+                    margin-bottom: var(--footer-size);
                     display: flex;
                     justify-content: center;
                     flex-direction: column;
                 }
             `);
 
-            component.setClass('container');
             name && component.setAttribute('id', name);
-
+            component.setClass('container');
             component.append(component.getContent());
         });
     }

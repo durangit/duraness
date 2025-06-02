@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+
+@font-face {
+	font-family: 'Icon';
+	font-style: normal;
+	font-weight: 900;
+	font-display: block;
+	src:	url("../fontawesome/webfonts/fa-solid-900.woff2") format("woff2"),
+			url("../fontawesome/webfonts/fa-solid-900.ttf") format("truetype");
+}
+
+:root {
+	--b-number: 12px;
+	--h-number: var(--b-number) * .5; /* 6px */
+	--sm-number: var(--b-number) * .33; /* 4px */
+	--xs-number: calc(var(--h-number) - var(--s-number)); /* 2px */
+	--md-number: calc(var(--b-number) - var(--s-number)); /* 8px */
+	--lg-number: calc(var(--b-number) + var(--s-number)); /* 16px */
+	--xl-number: calc(var(--b-number) + var(--h-number)); /* 18px */
+	--dl-number: calc(var(--b-number) * 2); /* 24px */
+	--tl-number: calc(var(--b-number) * 3); /* 36px */
+
+	--footer-size: 70px;
+	--font-size: var(--b-number);
+	--radius: 10px;
+	--white: #ddd;
+	--white-grow: #fefefe;
+	--white-shadow: #bcbcbc;
+	--grey: #bcbcbc;
+	--grey-grow: #d8d8d8;
+	--grey-shadow: #a0a0a0;
+	--black: #111;
+
+	font-family: 'JetBrains Mono', monospace;
+	font-size: var(--font-size);
+	overflow: hidden;
+
+	& body {
+		padding: 0;
+		margin: 0;
+	}
+}
+
+@media screen and (orientation: portrait) {}
+
+@media screen and (orientation: landscape) {}
+
+@media screen and (min-width: 1200px) {
+	:root {
+		font-size: var(--xl-number);
+	}
+}

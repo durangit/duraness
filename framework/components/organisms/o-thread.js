@@ -3,7 +3,7 @@ import wComponent from '../../core/w-component.js';
 export default class oThread extends wComponent {
     constructor() {
         super(component => {
-            const elDom = component.getDom();
+            const elDom = component.getDOM();
 
             let lastTouch = 0;
             const onWheel = event => {

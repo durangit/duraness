@@ -94,12 +94,11 @@ export default class mButton extends wComponent {
 
 			elLabel.appendChild(component.getContent());
 
-			component.setClass('button');
 			type && component.setClass(type);
 			size && component.setClass(size);
 			density && component.setClass(density);
 			rounding && component.setClass(rounding);
-			
+			component.setClass('button');
 			component.append(elLabel);
 		});
 	}
