@@ -4,7 +4,21 @@ export default class wcIconBar extends wComponent {
     constructor() {
         super(async component => {
             component.setClass('icon-bar');
-            await component.useTemplate();
+            const dom = await component.useTemplate();
+
+            dom.querySelectorAll('li[link]').forEach(element => {
+                element.addEventListener('click', event => {
+                    scrollSuaveView(event, element.getAttribute('link'));
+                });
+            });
         }, import.meta.url);
+    }
+}
+
+function scrollSuaveView(event, id) {
+    event.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
     }
 }
