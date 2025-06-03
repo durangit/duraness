@@ -8,17 +8,21 @@ export default class wcIconBar extends wComponent {
 
             dom.querySelectorAll('li[link]').forEach(element => {
                 element.addEventListener('click', event => {
-                    scrollSuaveView(event, element.getAttribute('link'));
+                    scroll(event, element.getAttribute('link'));
                 });
             });
         }, import.meta.url);
     }
 }
 
-function scrollSuaveView(event, id) {
+function scroll(event, id) {
     event.preventDefault();
     const element = document.getElementById(id);
     if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({
+            behavior: 'smooth',
+            inline: 'start',
+            block: 'nearest'
+        });
     }
 }
