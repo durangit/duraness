@@ -4,18 +4,27 @@
             <li>
                 <span>&#xf015;</span> Home | Menu
             </li>
-            <a href="#do"><li>
+            <a href="#do" onclick="scrollSuave(event, 'do')"><li>
                 <span>&#xf5fd;</span> Backlog | Do
             </li></a>
-            <a href="#doing"><li>
+            <a href="#doing" onclick="scrollSuave(event, 'doing')"><li>
                 <span>&#xf04b;</span> Playing | Doing
             </li></a>
-            <a href="#done"><li>
+            <a href="#done" onclick="scrollSuave(event, 'done')"><li>
                 <span>&#xf00c;</span> Finished | Done
             </li></a>
-            <a href="#add"><li>
+            <a href="#add" onclick="scrollSuave(event, 'add')"><li>
                 <span>&#x2b;</span> New | Add
             </li></a>
         </ul>
     </nav>
 </div>
+<script>
+    function scrollSuave(event, id) {
+        event.preventDefault();
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+</script>
