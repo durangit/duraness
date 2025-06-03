@@ -20,6 +20,7 @@
 	--dl-number: calc(var(--b-number) * 2); /* 24px */
 	--tl-number: calc(var(--b-number) * 3); /* 36px */
 
+	--thread-number: 5;
 	--footer-size: 70px;
 	--font-size: var(--b-number);
 	--radius: 10px;

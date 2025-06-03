@@ -18,8 +18,6 @@ export default class oScreen extends wComponent {
                     background-color: var(--white);
 
                     & .track {
-                        --thread-number: 2;
-
                         width: calc((100vw * var(--thread-number)));
                         height: 100%;
                         display: flex;

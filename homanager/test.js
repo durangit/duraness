@@ -24,9 +24,9 @@ const generateCard = () => {
 
 export default function test() {
     const elWrappers = document.querySelectorAll("wc-wrapper");
-    const elDoWrapper = elWrappers[0];
-    const elDoingWrapper = elWrappers[1];
-    const elDoneWrapper = elWrappers[2];
+    const elDoWrapper = elWrappers[1];
+    const elDoingWrapper = elWrappers[2];
+    const elDoneWrapper = elWrappers[3];
 
     for (let i = 0; i < 5; i++) {
         elDoWrapper.appendChild(generateCard());
