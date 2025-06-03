@@ -5,6 +5,7 @@ export default class eCard {
     #tag;
     #priority;
     #user;
+    #size;
 
     constructor(props) {
         this.#title = props.title;
@@ -13,6 +14,7 @@ export default class eCard {
         this.#tag = props.tag;
         this.#priority = props.priority;
         this.#user = props.user;
+        this.#size = props.size;
     }
 
     getTitle() {
@@ -37,5 +39,9 @@ export default class eCard {
 
     getUser() {
         return this.#user;
+    }
+
+    getSize() {
+        return this.#size;
     }
 }

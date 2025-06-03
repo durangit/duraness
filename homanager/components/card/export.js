@@ -11,6 +11,7 @@ export default class wcCard extends wComponent {
 				tag: component.getAttribute('tag'),
 				priority: component.getAttribute('priority'),
 				user: component.getAttribute('user'),
+				size: component.getAttribute('size'),
 			});
 
 			const elTitle = dom.querySelectorAll('p')[0];

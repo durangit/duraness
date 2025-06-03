@@ -26,14 +26,3 @@ function scroll(event, id) {
         });
     }
 }
-
-function scrollLeft(event, id) {
-    event.preventDefault();
-    const track = document.getElementsByTagName('wc-screen')[0].shadowRoot.querySelector('.track');
-    const target = document.getElementById(id);
-
-    track.scrollTo({
-        left: target.offsetLeft,
-        behavior: 'smooth'
-    });
-}

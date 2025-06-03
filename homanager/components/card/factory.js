@@ -11,6 +11,7 @@ export default class fCard {
         element.setAttribute("tag", entity.getTag());
         element.setAttribute("priority", entity.getPriority());
         element.setAttribute("user", entity.getUser());
+        element.setAttribute("size", entity.getSize());
 
         return element;
     }

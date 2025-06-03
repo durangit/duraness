@@ -14,6 +14,7 @@ const generateRandomCardProps = () => {
 		tag: `Tag ${Math.floor(Math.random() * 10)}`,
 		priority: Math.floor(Math.random() * 5) + 1,
 		user: Math.floor(Math.random() * 10) % 2 === 0 ? "Duran" : "Bia",
+		size: Math.floor(Math.random() * 10),
 	};
 }
 
@@ -24,9 +25,14 @@ const generateCard = () => {
 
 export default function test() {
     const elWrappers = document.querySelectorAll("wc-wrapper");
-    const elDoWrapper = elWrappers[1];
-    const elDoingWrapper = elWrappers[2];
-    const elDoneWrapper = elWrappers[3];
+    const elPlanWrapper = elWrappers[1];
+    const elDoWrapper = elWrappers[2];
+    const elDoingWrapper = elWrappers[3];
+    const elDoneWrapper = elWrappers[4];
+
+    for (let i = 0; i < 2; i++) {
+        elPlanWrapper.appendChild(generateCard());
+    }
 
     for (let i = 0; i < 5; i++) {
         elDoWrapper.appendChild(generateCard());
@@ -36,7 +42,7 @@ export default function test() {
         elDoingWrapper.appendChild(generateCard());
     }
 
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 3; i++) {
         elDoneWrapper.appendChild(generateCard());
     }
 }
