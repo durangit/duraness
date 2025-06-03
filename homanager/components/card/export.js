@@ -6,6 +6,11 @@ export default class wcCard extends wComponent {
 			component.setClass('card');
 			const dom = await component.useTemplate({
 				title: component.getAttribute('title'),
+				creation: component.getAttribute('creation'),
+				target: component.getAttribute('target'),
+				tag: component.getAttribute('tag'),
+				priority: component.getAttribute('priority'),
+				user: component.getAttribute('user'),
 			});
 
 			const elTitle = dom.querySelectorAll('p')[0];

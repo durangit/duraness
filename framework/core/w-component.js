@@ -7,6 +7,7 @@ export default class wComponent extends HTMLElement {
 	#slot;
 	#props;
 	#moduleUrl;
+	#build;
 
 	constructor(build, moduleUrl) {
 		if (!build || typeof build !== 'function') {
@@ -18,13 +19,16 @@ export default class wComponent extends HTMLElement {
 		this.#style = document.createElement('style');
 		this.#dom = document.createElement('div');
 		this.#slot = document.createElement('slot');
+		this.#build = build;
+		this.#moduleUrl = moduleUrl;
+	}
 
-		if (moduleUrl) {
-			this.#moduleUrl = moduleUrl;
+	connectedCallback() {
+		if (this.#moduleUrl) {
 			this.#importStyle();
 		}
 
-		build(this);
+		this.#build(this);
 
 		this.shadowRoot.append(this.#style, this.#dom);
 	}
