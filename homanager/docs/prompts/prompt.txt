@@ -1,0 +1,49 @@
+Tenho uma arquitetura hexagonal com a seguinte estrutura:
+
+root
+├── src
+│   ├── application
+│   │   ├── cases
+│   │   │   └── RenderPage.js
+│   │   └── ports
+│   │       └── outputs
+│   │           ├── CacheControl.js
+│   │           ├── SourceLoader.js
+│   │           └── TemplateRenderer.js
+│   ├── config
+│   │   ├── bootstrap.js
+│   │   └── dependencies.js
+│   ├── domain
+│   ├── infrastructure
+│   │   ├── cache
+│   │   │   └── RuntimeCacheControl.js
+│   │   └── source
+│   │       ├── FetchSourceLoader.js
+│   │       └── HTMLRenderer.js
+│   └── interfaces
+│       └── ui
+│           ├── components
+│           └── pages
+│               ├── home
+│               │   ├── Home.js
+│               │   ├── mock.js
+│               │   └── template.html
+│               └── Page.js
+├── index.html
+└── script.js
+
+Considere:
+
+- "ports/outputs" são contratos implementados pelos arquivos em "infrastruture"
+- "FetchSourceLoader" depende de uma instancia de "CacheControl" que é instanciada nas dependencias como "RuntimeCacheControl"
+- "dependencies.js" instancia as dependencias de infraestruturas
+- "bootstrap.js" importa as dependencias e executa o caso de uso "RenderPage" passando uma instancia de "Home"
+- "Home" extende "Page"
+- "script.js" importa o bootstrap
+
+Dado que o fluxo de renderização é script->bootstrap->FetchSourceLoader->HTMLRenderer->Page->Home
+Então questione caso não tenha entendido a responsabilidade de algum arquivo e aguarde a proxima instrução
+
+
+
+com essa interpretação, assuma um papel de instrutor e sugira melhorias no codigo citando exemplos somente quando solicitado

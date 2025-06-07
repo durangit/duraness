@@ -1,4 +1,4 @@
-import fCard from "./components/card/factory.js";
+import fCard from "../../src/interfaces/ui/components/card/factory.js";
 
 const generateRandomCardProps = () => {
 	const now = new Date().getTime();
@@ -23,26 +23,26 @@ const generateCard = () => {
 	return fCard.create("wc-card", props);
 }
 
-export default function test() {
-    const elWrappers = document.querySelectorAll("wc-wrapper");
-    const elPlanWrapper = elWrappers[1];
-    const elDoWrapper = elWrappers[2];
-    const elDoingWrapper = elWrappers[3];
-    const elDoneWrapper = elWrappers[4];
+export default function build(dom) {
+	const elWrappers = dom.querySelectorAll("wc-wrapper");
+	const elPlanWrapper = elWrappers[1];
+	const elDoWrapper = elWrappers[2];
+	const elDoingWrapper = elWrappers[3];
+	const elDoneWrapper = elWrappers[4];
 
-    for (let i = 0; i < 2; i++) {
-        elPlanWrapper.appendChild(generateCard());
-    }
+	for (let i = 0; i < 2; i++) {
+		elPlanWrapper.appendChild(generateCard());
+	}
 
-    for (let i = 0; i < 5; i++) {
-        elDoWrapper.appendChild(generateCard());
-    }
+	for (let i = 0; i < 5; i++) {
+		elDoWrapper.appendChild(generateCard());
+	}
 
-    for (let i = 0; i < 1; i++) {
-        elDoingWrapper.appendChild(generateCard());
-    }
+	for (let i = 0; i < 1; i++) {
+		elDoingWrapper.appendChild(generateCard());
+	}
 
-    for (let i = 0; i < 3; i++) {
-        elDoneWrapper.appendChild(generateCard());
-    }
+	for (let i = 0; i < 3; i++) {
+		elDoneWrapper.appendChild(generateCard());
+	}
 }
