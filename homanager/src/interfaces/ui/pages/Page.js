@@ -8,4 +8,8 @@ export default class Page {
 	getTemplateUrl() {
 		return this.#templateUrl;
 	}
+
+	defineComponent({ tagName, component }) {
+		customElements.get(tagName) || customElements.define(tagName, component);
+	}
 }

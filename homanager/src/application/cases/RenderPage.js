@@ -2,7 +2,6 @@ export default class RenderPage {
 	#sourceLoader;
 	#templateRenderer;
 	#afterRender;
-	#dom;
 
 	constructor({ sourceLoader, templateRenderer }) {
 		this.#sourceLoader = sourceLoader;
@@ -19,11 +18,7 @@ export default class RenderPage {
 
 	#afterLoad(template) {
 		const dom = this.#templateRenderer.render(template, document.body);
-		this.#dom = dom;
 		this.#afterRender && this.#afterRender(dom);
-	}
-
-	getDOM() {
-		return this.#dom;
+		this.afterReady && this.afterReady(dom);
 	}
 }

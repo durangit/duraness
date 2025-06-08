@@ -16,13 +16,20 @@ export default class Home extends Page {
 	}
 
 	#afterRender(dom) {
-		customElements.define("wc-screen", wcScreen);
-		customElements.define("wc-thread", wcThread);
-		customElements.define("wc-container", wcContainer);
-		customElements.define("wc-wrapper", wcWrapper);
-		customElements.define("wc-icon-bar", wcIconBar);
-		customElements.define("wc-add-form", wcAddForm);
-		customElements.define("wc-card", wcCard);
+		const components = {
+			"wc-screen": wcScreen,
+			"wc-thread": wcThread,
+			"wc-container": wcContainer,
+			"wc-wrapper": wcWrapper,
+			"wc-icon-bar": wcIconBar,
+			"wc-add-form": wcAddForm,
+			"wc-card": wcCard,
+		};
+
+		for (const tagName in components) {
+			const component = components[tagName];
+			this.defineComponent({ component, tagName });
+		}
 
 		this.#dom = dom;
 	}
