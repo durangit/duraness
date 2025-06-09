@@ -10,7 +10,7 @@ import wcCard from "../../interface/components/card/export.js";
 export default class HomeHandler extends DOMHandler {
 	#elements = {};	
 
-	build(dom, data) {
+	build(dom) {
 		const components = {
 			"wc-screen": wcScreen,
 			"wc-thread": wcThread,
@@ -35,11 +35,18 @@ export default class HomeHandler extends DOMHandler {
 		};
 	}
 
-	addCard(type, card) {
+	export() {
+		return {
+			addCard: this.#addCard.bind(this),
+			getCards: this.#getCards.bind(this),
+		};
+	};
+
+	#addCard(type, card) {
 		this.#elements.wrapper[type].appendChild(card);
 	}
 
-	getCards(type) {
+	#getCards(type) {
 		return this.#elements.wrapper[type].querySelectorAll("wc-card");
 	}
 }

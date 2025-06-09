@@ -14,9 +14,10 @@ export default function BrowserRendererTests({ register, compare }) {
 		const container = await renderer.render(hidden);
 		document.body.appendChild(container);
 		
-		compare(HomeHandler.getCards("plan").length, 2);
-		compare(HomeHandler.getCards("do").length, 5);
-		compare(HomeHandler.getCards("doing").length, 1);
-		compare(HomeHandler.getCards("done").length, 3);
+		const handler = HomeHandler.export();
+		compare(handler.getCards("plan").length, 2);
+		compare(handler.getCards("do").length, 5);
+		compare(handler.getCards("doing").length, 1);
+		compare(handler.getCards("done").length, 3);
 	});
 };

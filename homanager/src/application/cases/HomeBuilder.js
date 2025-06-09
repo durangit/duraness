@@ -8,6 +8,7 @@ export default class HomeBuilder extends PageBuilder {
 	#sourceLoader;
 	#data;
 	#DOMHandler;
+	#handlers;
 	
 	constructor({ sourceLoader, data, DOMHandler }) {
 		super();
@@ -22,6 +23,7 @@ export default class HomeBuilder extends PageBuilder {
 
 	afterRender(dom) {
 		this.#DOMHandler.build(dom);
+		this.#handlers = this.#DOMHandler.export();
 
 		const data = this.#data?.getData();
 		const convertTo = {
@@ -33,7 +35,7 @@ export default class HomeBuilder extends PageBuilder {
 		
 		for (const type in data) {
 			data[type].forEach(cardProps => {
-				this.#DOMHandler.addCard(convertTo[type], cardService.createElement("wc-card", cardProps));
+				this.#handlers?.addCard && this.#handlers.addCard(convertTo[type], cardService.createElement("wc-card", cardProps));
 			});
 		}
 	}
