@@ -5,6 +5,7 @@ const engine = new TestEngine();
 const testFiles = [
 	'./unit/HomeBuilder.test.js',
 	'./integration/BrowserRenderer.test.js',
+	'./e2e/Navigation.test.js',
 ];
 
 const loadTests = async files => {
