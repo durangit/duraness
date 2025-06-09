@@ -1,4 +1,4 @@
-class UnitTestEngine {
+export default class TestEngine {
 	#tests = [];
 	#results = [];
 
@@ -37,5 +37,3 @@ class UnitTestEngine {
 		console.log(`\n${passed} passed, ${failed} failed.`);
 	}
 }
-
-export default new UnitTestEngine();

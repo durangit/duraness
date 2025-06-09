@@ -1,13 +1,13 @@
 import RuntimeCacheControl from '../infrastructure/cache/RuntimeCacheControl.js';
 import FetchSourceLoader from '../infrastructure/source/FetchSourceLoader.js';
-import HTMLRenderer from '../infrastructure/source/HTMLRenderer.js';
+import HTMLParser from '../infrastructure/source/HTMLParser.js';
 
 const cacheControl = new RuntimeCacheControl();
 const sourceLoader = new FetchSourceLoader({ cacheControl });
-const templateRenderer = new HTMLRenderer();
+const templateParser = new HTMLParser();
 
-export default {
+export {
 	cacheControl,
 	sourceLoader,
-	templateRenderer,
+	templateParser,
 };

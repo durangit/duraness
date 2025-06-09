@@ -1,14 +1,16 @@
-import engine from "./UnitTestEngine.js";
+import TestEngine from "./TestEngine.js";
+
+const engine = new TestEngine();
 
 const testFiles = [
-	'./RenderPage.test.js',
-	'./RenderHome.test.js',
+	'./unit/HomeBuilder.test.js',
+	'./integration/BrowserRenderer.test.js',
 ];
 
 const loadTests = async files => {
 	for (const filePath of files) {
 		const module = await import(filePath);
-      	const filename = filePath.split('/').pop();
+      	const filename = filePath; //.split('/').pop();
 
 		if (typeof module.default === 'function') {
 			const testRegister = (testName, fn) => {

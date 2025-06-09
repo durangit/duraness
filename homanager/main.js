@@ -1,14 +1,12 @@
-// To compose
-import bootstrap from "./src/composition/bootstrap.js";
-import dependencies from "./src/composition/defaultDependencies.js";
-import UseCase from "./src/application/cases/RenderHome.js";
-
-const controller = bootstrap(UseCase, dependencies);
+import BrowserRenderer from "./src/infrastructure/ui/BrowserRenderer.js";
+import { templateParser, sourceLoader } from "./src/composition/defaultDependencies.js";
+import { HomeBuilder } from "./src/composition/homeDependencies.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
-	await controller.render();
-	controller.buildPlan(2);
-	controller.buildDo(5);
-	controller.buildDoing(1);
-	controller.buildDone(3);
+	const controller = new BrowserRenderer({
+		templateParser,
+		pageBuilder: HomeBuilder({ sourceLoader }),
+	});
+
+	await controller.render(document.body);
 });

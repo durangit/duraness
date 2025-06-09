@@ -16,12 +16,13 @@ export default class FetchSourceLoader extends SourceLoader {
 	
 	async load(url, afterLoad) {
 		if (this.#cacheControl.has(url)) {
-			afterLoad(this.#cacheControl.get(url));
-			return;
+			const content = this.#cacheControl.get(url);
+			afterLoad(content);
+			return content;
 		}
 
 		this.#addCallbackQueue(url, afterLoad);
-		await this.#promise(url);
+		return await this.#promise(url);
 	}
 
 	#safeFetch(response) {
@@ -40,12 +41,15 @@ export default class FetchSourceLoader extends SourceLoader {
 			});
 		}
 
-		this.#callbackQueues.get(url).callbacks.push(callback);
+		if (callback) {
+			this.#callbackQueues.get(url).callbacks.push(callback);
+		}
 	}
 
 	async #promise(path) {
 		const queue = this.#callbackQueues.get(path);
 		const content = await queue.promise;
+
 		if (!this.#cacheControl.has(path)) {
 			this.#cacheControl.set(path, content);
 
@@ -55,5 +59,7 @@ export default class FetchSourceLoader extends SourceLoader {
 
 			this.#callbackQueues.delete(path);
 		}
+
+		return content;
 	}
 }

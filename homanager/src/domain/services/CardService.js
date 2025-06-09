@@ -1,7 +1,7 @@
 import CardEntity from "../models/CardEntity.js";
 
 export default class CardService {
-	create(tagName, props) {
+	createElement(tagName, props) {
 		const element = document.createElement(tagName);
 		const entity = new CardEntity(props);
 
