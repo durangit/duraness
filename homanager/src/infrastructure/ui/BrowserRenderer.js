@@ -15,7 +15,7 @@ export default class BrowserRenderer extends WebRenderer {
 		const dom = this.#templateParser.toDOM(template);
 
 		container.appendChild(dom);
-		this.#pageBuilder.afterRender(container);
+		await this.#pageBuilder.afterRender(container);
 		return container;
 	}
 }

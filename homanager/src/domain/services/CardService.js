@@ -1,6 +1,13 @@
 import CardEntity from "../models/CardEntity.js";
+import CardStorage from "../storages/CardStorage.js";
 
 export default class CardService {
+	#storage;
+	
+	constructor({ dataPersistence }) {
+		this.#storage = new CardStorage({ dataPersistence });
+	}
+
 	createElement(tagName, props) {
 		const element = document.createElement(tagName);
 		const entity = new CardEntity(props);
@@ -32,5 +39,14 @@ export default class CardService {
 			user: Math.floor(Math.random() * 10) % 2 === 0 ? "Duran" : "Bia",
 			size: Math.floor(Math.random() * 10),
 		};
+	}
+
+	persist(type, card) {
+		// validation logic
+		this.#storage.save(type, card);
+	}
+
+	async getStorage() {
+		return await this.#storage.getAll();
 	}
 }

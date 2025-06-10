@@ -1,9 +1,10 @@
 import HomeBuilder from "../../src/application/cases/HomeBuilder.js";
-import sourceLoader from "../mocks/SourceLoader.mock.js";
-import templateParser from "../mocks/TemplateParser.mock.js";
-import webRenderer from "../mocks/WebRenderer.mock.js";
-import DOMHandler from "../mocks/DOMHandler.mock.js";
-import HomeData from "../mocks/HomeData.mock.js";
+import sourceLoader from "../mocks/FakeLoader.mock.js";
+import templateParser from "../mocks/FakeParser.mock.js";
+import webRenderer from "../mocks/FakeRenderer.mock.js";
+import DOMHandler from "../mocks/FakeHandler.mock.js";
+import dataPersistence from "../mocks/FakePersistence.mock.js";
+import HomeData from "../mocks/FakeHomeData.mock.js";
 
 export default function HomeBuilderTests({ register, compare }) {
 	register("build and afterLoad", async () => {
@@ -11,6 +12,7 @@ export default function HomeBuilderTests({ register, compare }) {
 			sourceLoader,
 			data: HomeData,
 			DOMHandler,
+			dataPersistence,
 		});
 		const template = await builder.build();
 		const dom = webRenderer.render(templateParser.toDOM(template), document.body);
