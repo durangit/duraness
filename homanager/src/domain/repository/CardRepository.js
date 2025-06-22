@@ -1,10 +1,7 @@
-import CardRepository from "../repositories/CardRepository.js";
-
-export default class CardPersistence extends CardRepository {
+export default class CardRepository {
 	#dataPersistence;
 
 	constructor({ dataPersistence }) {
-		super();
 		this.#dataPersistence = dataPersistence;
 	}
 

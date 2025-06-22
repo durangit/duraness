@@ -1,11 +1,11 @@
 import CardEntity from "../models/CardEntity.js";
-import CardStorage from "../storages/CardStorage.js";
+import CardRepository from "../repository/CardRepository.js";
 
 export default class CardService {
-	#storage;
+	#repository;
 	
 	constructor({ dataPersistence }) {
-		this.#storage = new CardStorage({ dataPersistence });
+		this.#repository = new CardRepository({ dataPersistence });
 	}
 
 	createElement(tagName, props) {
@@ -43,10 +43,10 @@ export default class CardService {
 
 	persist(type, card) {
 		// validation logic
-		this.#storage.save(type, card);
+		this.#repository.save(type, card);
 	}
 
 	async getStorage() {
-		return await this.#storage.getAll();
+		return await this.#repository.getAll();
 	}
 }
