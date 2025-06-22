@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 	await controller.render(document.body);
 
 	if ('serviceWorker' in navigator) {
-		window.addEventListener('load', () => {
-			navigator.serviceWorker.register('/service-worker.js');
-		});
+		navigator.serviceWorker.register('/homanager/service-worker.js').then(reg => {
+			console.log('Service worker registered.', reg);
+		});;
 	}
 });
