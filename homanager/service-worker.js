@@ -8,7 +8,7 @@ const DATA_CACHE_NAME = `data-homanager-${CACHE_VERSION}`;
 
 const CACHE_FILES = [
 	'/homanager/index.html',
-	'/homanager/styles.css',
+	'/homanager/style.css',
 	'/homanager/main.js',
 	'/homanager/favicon/favicon.ico',
 	'/homanager/favicon/favicon.svg',
