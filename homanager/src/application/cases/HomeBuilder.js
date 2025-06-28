@@ -52,7 +52,7 @@ export default class HomeBuilder extends PageBuilder {
 		for (const type in storage) {
 			const cards = await storage[type]; // Why when remove await throw error?
 			cards.forEach(cardProps => {
-				this.#handlers?.addCard && this.#handlers.addCard(convertTo[type], this.#cardService.createElement("wc-card", cardProps));
+				//this.#handlers?.addCard && this.#handlers.addCard(convertTo[type], this.#cardService.createElement("wc-card", cardProps));
 			});
 		}
 	}

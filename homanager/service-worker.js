@@ -49,10 +49,10 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-	console.log('[ServiceWorker] Fetch', event.request.url);
+	//console.log('[ServiceWorker] Fetch', event.request.url);
 
 	if (event.request.url.includes('/forecast/')) {
-		console.log('[Service Worker] Fetch (data)', event.request.url);
+		//console.log('[Service Worker] Fetch (data)', event.request.url);
 		event.respondWith(
 			caches.open(DATA_CACHE_NAME).then((cache) => {
 				return fetch(event.request).then((response) => {

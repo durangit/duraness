@@ -1,4 +1,4 @@
-import wComponent from "../../../../../../framework/core/w-component.js";
+import wComponent from "@framework/core/w-component.js";
 
 export default class wcAddForm extends wComponent {
     constructor() {
