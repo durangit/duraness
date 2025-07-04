@@ -1,0 +1,10 @@
+{
+  "imports": {
+    "vite": "npm:vite@^7.0.1"
+  },
+  "tasks": {
+    "dev": "vite --config vite.config.js", 
+    "build": "vite build --config vite.config.js",
+    "preview": "deno run --allow-read --allow-net deno.server.js base=/homanager dir=../../homanager port=4507"
+  }
+}
