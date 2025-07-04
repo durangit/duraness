@@ -4,7 +4,7 @@ const CACHE_VERSION = "0.0.01";
 const CACHE_NAME = `static-homanager-${CACHE_VERSION}`;
 
 const DATA_CACHE_VERSION = "0.0.01";
-const DATA_CACHE_NAME = `data-homanager-${CACHE_VERSION}`;
+const DATA_CACHE_NAME = `data-homanager-${DATA_CACHE_VERSION}`;
 
 const CACHE_FILES = [
 	'/homanager/index.html',
@@ -18,17 +18,21 @@ const CACHE_FILES = [
 	'/homanager/favicon/apple-touch-icon.png',
 ];
 
-self.addEventListener('install', event => {
+self.addEventListener('message', event => {
 	console.log('[ServiceWorker] Install');
 
-	event.waitUntil(
-		caches.open(CACHE_NAME).then(cache => {
-			console.log('[ServiceWorker] Pre-caching offline page');
-			return cache.addAll(CACHE_FILES);
-		})
-	);
+	if (event.data?.type === 'ASSET_LIST') {
+		const files = event.data.payload;
 
-	self.skipWaiting();
+		event.waitUntil(
+			caches.open(CACHE_NAME).then(cache => {
+				console.log('[ServiceWorker] Pre-caching offline page');
+				return cache.addAll(files); //CACHE_FILES
+			})
+		);
+
+		self.skipWaiting();
+	}	
 });
 
 self.addEventListener('activate', event => {	
